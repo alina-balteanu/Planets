@@ -1,10 +1,31 @@
 body {
-  background: #0a0520;
   height: 100vh;
   width: 100vw;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; }
+
+body {
+  background: #000;
   display: flex;
   align-items: center;
-  justify-content: center; }
+  justify-content: center;
+  background: url(../img/orion.jpg) no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: bottom center; }
+  body:after {
+    content: "";
+    background: rgba(14, 5, 29, 0.5);
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    height: 100vh;
+    width: 100vw;
+    margin-right: 8px;
+    z-index: -10; }
   body .earth {
     background-image: url(../img/earthnight2.jpg);
     background-size: calc(50vmin* 2) 50vmin;
@@ -19,9 +40,9 @@ body {
     margin: auto;
     border-radius: 50%;
     box-shadow: calc(calc(50vmin/ 3)/ 2) 0 calc(50vmin/ 3) rgba(0, 0, 0, 0.8) inset, calc(calc(50vmin/ 3) * -0.1) 0 calc(calc(50vmin/ 3) / 3) rgba(255, 255, 255, 0.7) inset;
-    animation: spinCounterClockwise 10s linear infinite; }
+    animation: spinCounterClockwise 20s linear infinite; }
   body .moon {
-    background-image: url(../img/cheese1.jpg);
+    background-image: url(../img/cheese2.png);
     background-size: calc(50vmin/ 4);
     position: absolute;
     z-index: 11;
@@ -29,9 +50,9 @@ body {
     height: calc(50vmin/ 4);
     margin: auto;
     border-radius: 50%;
-    box-shadow: calc(calc(50vmin/ 4)/ 3) 0 calc(calc(calc(50vmin/ 4)/ 3)* 2) black inset, calc(calc(calc(50vmin/ 4)/ 3) * -0.1) 0 calc(calc(calc(50vmin/ 4)/ 3) / 3) rgba(255, 255, 255, 0.7) inset;
+    box-shadow: calc(calc(50vmin/ 4)/ 3) 0 calc(calc(calc(50vmin/ 4)/ 3)* 3) black inset, calc(calc(calc(50vmin/ 4)/ 3) * -0.1) 0 calc(calc(calc(50vmin/ 4)/ 3) / 3) rgba(255, 255, 255, 0.7) inset;
     transform: translatex(calc(50vmin - calc(50vmin/ 4))) translatey(calc(50vmin/ 4));
-    animation: moonOrbit 15s ease-in-out infinite, spinClockwise 15s linear infinite; }
+    animation: moonOrbit 20s ease-in-out infinite, spinClockwise 15s linear infinite; }
 
 @keyframes spinCounterClockwise {
   from {
@@ -51,6 +72,65 @@ body {
   50% {
     transform: translatex(calc((50vmin* -1) + calc(50vmin/ 4))) translatey(calc(calc(50vmin/ 4)* -1));
     z-index: 0; }
+  99% {
+    z-index: 0; }
   100% {
     transform: translatex(calc(50vmin - calc(50vmin/ 4))) translatey(calc(50vmin/ 4));
     z-index: 11; } }
+
+.star {
+  background-color: white;
+  border-radius: 50%;
+  position: absolute;
+  z-index: -9;
+  animation: star 1.5s ease-in infinite; }
+
+.star:nth-of-type(1) {
+  animation-delay: 0.1s; }
+
+.star:nth-of-type(2) {
+  animation-delay: 0.6s; }
+
+.star:nth-of-type(3) {
+  animation-delay: 1s; }
+
+.star:nth-of-type(4) {
+  animation-delay: 0.5s; }
+
+.star:nth-of-type(5) {
+  animation-delay: 0.5s; }
+
+.star:nth-of-type(6) {
+  animation-delay: 0.3s; }
+
+.star:nth-of-type(7) {
+  animation-delay: 0.8s; }
+
+.star:nth-of-type(8) {
+  animation-delay: 0.7s; }
+
+.star:nth-of-type(9) {
+  animation-delay: 0.9s; }
+
+.star:nth-of-type(10) {
+  animation-delay: 0.3s; }
+
+.star:nth-of-type(11) {
+  animation-delay: 0.1s; }
+
+.star:nth-of-type(12) {
+  animation-delay: 0.2s; }
+
+.star:nth-of-type(13) {
+  animation-delay: 0.6s; }
+
+.star:nth-of-type(14) {
+  animation-delay: 0.2s; }
+
+@keyframes star {
+  0% {
+    box-shadow: 0 0 10px 0px rgba(255, 255, 255, 0.05); }
+  50% {
+    box-shadow: 0 0 10px 3px rgba(255, 170, 170, 0.6); }
+  100% {
+    box-shadow: 0 0 10px 0px rgba(245, 247, 103, 0.5); } }
