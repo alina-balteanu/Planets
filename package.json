@@ -1,0 +1,17 @@
+{
+  "name": "spinning_planets",
+  "version": "1.0.0",
+  "description": "spinning planets",
+  "main": "index.js",
+  "scripts": {
+    "sass": "node-sass -w scss/ -o dist/css/ --recursive"
+  },
+  "keywords": [
+    "planets"
+  ],
+  "author": "alina-balteanu",
+  "license": "MIT",
+  "dependencies": {
+    "node-sass": "^4.11.0"
+  }
+}
