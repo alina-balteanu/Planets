@@ -1,0 +1,56 @@
+body {
+  background: #0a0520;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+  body .earth {
+    background-image: url(../img/earthnight2.jpg);
+    background-size: calc(50vmin* 2) 50vmin;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    width: 50vmin;
+    height: 50vmin;
+    margin: auto;
+    border-radius: 50%;
+    box-shadow: calc(calc(50vmin/ 3)/ 2) 0 calc(50vmin/ 3) rgba(0, 0, 0, 0.8) inset, calc(calc(50vmin/ 3) * -0.1) 0 calc(calc(50vmin/ 3) / 3) rgba(255, 255, 255, 0.7) inset;
+    animation: spinCounterClockwise 10s linear infinite; }
+  body .moon {
+    background-image: url(../img/cheese1.jpg);
+    background-size: calc(50vmin/ 4);
+    position: absolute;
+    z-index: 11;
+    width: calc(50vmin/ 4);
+    height: calc(50vmin/ 4);
+    margin: auto;
+    border-radius: 50%;
+    box-shadow: calc(calc(50vmin/ 4)/ 3) 0 calc(calc(calc(50vmin/ 4)/ 3)* 2) black inset, calc(calc(calc(50vmin/ 4)/ 3) * -0.1) 0 calc(calc(calc(50vmin/ 4)/ 3) / 3) rgba(255, 255, 255, 0.7) inset;
+    transform: translatex(calc(50vmin - calc(50vmin/ 4))) translatey(calc(50vmin/ 4));
+    animation: moonOrbit 15s ease-in-out infinite, spinClockwise 15s linear infinite; }
+
+@keyframes spinCounterClockwise {
+  from {
+    background-position-x: 0; }
+  to {
+    background-position-x: calc(50vmin* 2); } }
+
+@keyframes spinClockwise {
+  from {
+    background-position-x: 0; }
+  to {
+    background-position-x: calc(calc(50vmin/ 4)* -4); } }
+
+@keyframes moonOrbit {
+  49% {
+    z-index: 11; }
+  50% {
+    transform: translatex(calc((50vmin* -1) + calc(50vmin/ 4))) translatey(calc(calc(50vmin/ 4)* -1));
+    z-index: 0; }
+  100% {
+    transform: translatex(calc(50vmin - calc(50vmin/ 4))) translatey(calc(50vmin/ 4));
+    z-index: 11; } }
