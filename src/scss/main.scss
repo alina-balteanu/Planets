@@ -1,0 +1,162 @@
+$earthW: 50vmin;
+$earthS: calc(#{$earthW}/ 3);
+
+$moonW: calc(#{$earthW}/ 4);
+$moonS: calc(#{$moonW}/ 3);
+$moonOrbit: calc(#{$earthW * 2});
+
+$edgeEarthPosition: calc(#{$earthW}* 2);
+
+body {
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+body {
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: url(https://res.cloudinary.com/dshmwg7vw/image/upload/v1551123079/orion.jpg)
+    no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: bottom center;
+  z-index: -999;
+
+  &:after {
+    content: "";
+    background: rgba(14, 5, 29, 0.5);
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    height: 100vh;
+    width: 100vw;
+    margin-right: 8px;
+    z-index: -10;
+  }
+
+  //planets configuration
+
+  .earth {
+    background-image: url(https://res.cloudinary.com/dshmwg7vw/image/upload/v1551102200/earthnight2.jpg);
+    background-size: calc(#{$earthW}* 2) $earthW;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    width: $earthW;
+    height: $earthW;
+    margin: auto;
+    border-radius: 50%;
+    font-size: 8px; //hack for using negative values on box-shadow, edge doesn't work with neg vmin or %
+    // box-shadow: calc(#{$earthS}/ 2) 0 $earthS rgba(#000, 0.8) inset,
+    //   calc(#{$earthS} * -0.1) 0 calc(#{$earthS} / 3) rgba(#fff, 0.7) inset;   not working in edge
+    box-shadow: 8.3vmin 0 16.6vmin rgba(#000, 0.9) inset,
+      -0.5em 0 5.5vmin rgba(#fff, 0.6) inset;
+
+    animation: spinCounterClockwise 20s linear infinite;
+  }
+
+  .moon {
+    background-image: url(https://res.cloudinary.com/dshmwg7vw/image/upload/v1551123071/cheese2.png);
+    background-size: $moonW;
+    position: absolute;
+    z-index: 11;
+    width: $moonW;
+    height: $moonW;
+    margin: auto;
+    border-radius: 50%;
+    font-size: 8px;
+    // box-shadow: $moonS 0 calc(#{$moonS}* 3) rgba(#000, 1) inset,
+    //   calc(#{$moonS} * -0.1) 0 calc(#{$moonS} / 3) rgba(#fff, 0.7) inset;
+
+    box-shadow: 4.16vmin 0 12.5vmin rgba(#000, 1) inset,
+      -0.3em 0 1.38vmin rgba(#fff, 0.7) inset;
+
+    // transform: translatex(calc(#{$earthW} - #{$moonW})) translatey($moonW); not working in edge
+    transform: translatex(37.5vmin) translatey(12.5vmin);
+
+    animation: moonOrbit 20s ease-in-out infinite,
+      spinClockwise 15s linear infinite reverse; //can't use background-pos with neg percentage, so reversing the animation direction
+  }
+}
+
+//planet spin animations
+
+@keyframes spinCounterClockwise {
+  from {
+    background-position: 0;
+  }
+  to {
+    background-position: 100vmin;
+  }
+}
+
+@keyframes spinClockwise {
+  from {
+    background-position: 0;
+  }
+  to {
+    // background-position: calc(#{$moonW}* -4); not working in edge
+    background-position: 50vmin;
+  }
+}
+
+@keyframes moonOrbit {
+  49% {
+    z-index: 11;
+  }
+  50% {
+    // transform: translatex(calc((#{$earthW}* -1) + #{$moonW}))  translatey(calc(#{$moonW}* -1)); not working in edge
+    transform: translatex(-37.5vmin) translatey(-12.5vmin);
+    z-index: 0;
+  }
+  99% {
+    z-index: 0;
+  }
+  100% {
+    // transform: translatex(calc(#{$earthW} - #{$moonW})) translatey($moonW); not working in edge
+    transform: translatex(37.5vmin) translatey(12.5vmin);
+    z-index: 11;
+  }
+}
+
+//stars configuration
+.star {
+  background-color: white;
+  border-radius: 50%;
+  position: absolute;
+  z-index: -9;
+  animation: star 3s ease-in infinite;
+  opacity: 0;
+}
+
+@for $x from 1 through 14 {
+  .star:nth-of-type(#{$x}) {
+    animation-delay: random(10) * 0.4s;
+  }
+}
+
+@keyframes star {
+  0% {
+    transform: scale(0);
+    box-shadow: 0 0 10px 0px rgba(255, 255, 255, 0.05);
+  }
+  20% {
+    opacity: 1;
+    box-shadow: 0 0 10px 3px rgba(255, 170, 170, 0.6);
+    transform: scale(1);
+  }
+  100% {
+    box-shadow: 0 0 10px 0px rgba(245, 247, 103, 0.5);
+    transform: scale(0);
+  }
+}
